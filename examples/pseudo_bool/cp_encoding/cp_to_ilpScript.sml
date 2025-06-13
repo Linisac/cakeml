@@ -726,10 +726,8 @@ Proof
       simp[eval_ilin_term_def, iSUM_def]>>
       intLib.ARITH_TAC))>>
   pop_assum (fn thm => simp[thm])>>
-  ‘eval_iclin_term wi Xs - rhs = eval_ilin_term wi xs - rhs'’ by (
-    rw[]>>
-    dxrule split_iclin_term_sound>>
-    rw[Once eval_ilin_term_def, iSUM_def])>>
+  drule_then (qspec_then ‘wi’ mp_tac) split_iclin_term_sound>>
+  rw[Once eval_ilin_term_def, iSUM_def]>>
   intLib.ARITH_TAC
 QED
 
